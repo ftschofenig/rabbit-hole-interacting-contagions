@@ -1,0 +1,57 @@
+included_conspiracies:
+  - ConsProb_fakenews
+  - ConsProb_5g
+  - ConsProb_deaths
+  - ConsProb_qanon
+  - ConsProb_antivax
+  - ConsProb_gates
+  - ConsProb_plandemic
+  - ConsProb_hospitals
+  - ConsProb_fauci
+  - ConsProb_china
+  - ConsProb_testing
+  - ConsProb_blm
+  - ConsProb_pizzagate
+  - ConsProb_trumppuppet
+  - ConsProb_democrats
+
+baseline_conspiracy: ConsProb_fakenews
+
+merges:
+  ConsProb_fauci:
+    - ConsProb_fauci
+    - ConsProb_hydroxy
+
+labels:
+  ConsProb_fakenews: Fake News
+  ConsProb_5g: 5G
+  ConsProb_deaths: Deaths
+  ConsProb_qanon: QAnon
+  ConsProb_antivax: Anti-Vax
+  ConsProb_gates: Gates
+  ConsProb_plandemic: Plandemic
+  ConsProb_hospitals: Hospitals
+  ConsProb_fauci: Fauci/Hydroxychloroquine
+  ConsProb_china: China
+  ConsProb_testing: Testing
+  ConsProb_blm: Black Lives Matter
+  ConsProb_pizzagate: Pizzagate
+  ConsProb_trumppuppet: Trump Puppet
+  ConsProb_democrats: Democrats
+
+semantic_label_map:
+  Fake News: ConsProb_fakenews
+  5G: ConsProb_5g
+  Misc Deaths: ConsProb_deaths
+  Qanon: ConsProb_qanon
+  Anti-Vax: ConsProb_antivax
+  Bill Gates: ConsProb_gates
+  Plandemic: ConsProb_plandemic
+  Empty Hospitals: ConsProb_hospitals
+  Fauci / Hydroxy: ConsProb_fauci
+  China: ConsProb_china
+  False Positives: ConsProb_testing
+  BLM: ConsProb_blm
+  Pizzagate: ConsProb_pizzagate
+  Trump Puppet: ConsProb_trumppuppet
+  Democrats: ConsProb_democrats
