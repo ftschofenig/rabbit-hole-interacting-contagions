@@ -45,7 +45,6 @@ from .evaluation import (
 from .provenance import (
     atomic_joblib_dump,
     atomic_json_dump,
-    collect_git_state,
     collect_package_versions,
     load_manifest_backed_simulation_bundle,
     sha256_file,

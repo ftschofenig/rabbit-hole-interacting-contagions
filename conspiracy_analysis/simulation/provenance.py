@@ -4,7 +4,6 @@ import hashlib
 import importlib.metadata
 import json
 import os
-import subprocess
 import tempfile
 from pathlib import Path
 from typing import Any, Dict, Iterable
@@ -25,31 +24,6 @@ def sha256_file(path: Path, chunk_size: int = 1024 * 1024) -> str:
         for chunk in iter(lambda: handle.read(chunk_size), b""):
             digest.update(chunk)
     return digest.hexdigest()
-
-
-def collect_git_state(repo_root: Path) -> Dict[str, Any]:
-    """Collect the source commit and exact worktree status lines."""
-    root = Path(repo_root)
-    commit = subprocess.run(
-        ["git", "rev-parse", "HEAD"],
-        cwd=root,
-        check=True,
-        capture_output=True,
-        text=True,
-    ).stdout.strip()
-    status_output = subprocess.run(
-        ["git", "status", "--porcelain=v1"],
-        cwd=root,
-        check=True,
-        capture_output=True,
-        text=True,
-    ).stdout
-    status_lines = status_output.splitlines()
-    return {
-        "source_commit": commit,
-        "initial_worktree_clean": len(status_lines) == 0,
-        "initial_worktree_state": status_lines,
-    }
 
 
 def collect_package_versions(distributions: Iterable[str]) -> Dict[str, str]:
