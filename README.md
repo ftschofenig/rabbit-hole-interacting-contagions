@@ -10,6 +10,15 @@ The committed PNG files in `figures_final` are the reference versions used by
 the current manuscript. Running the notebooks regenerates them from the public
 inputs.
 
+## Companion repository
+
+The embedding assisted narrative discovery and prompt tuning methodology is
+documented in the
+[companion repository](https://github.com/pvicinanza/llm_prompt_tuning_conspiracies).
+The classifier output files and semantic distance matrix used by the present
+paper are included in `anonymized_data.zip`, so reproducing the analyses does
+not require running the companion repository.
+
 ## Scope
 
 The public workflow contains eight notebooks and the package modules needed by
@@ -17,8 +26,10 @@ those notebooks. It does not contain the private source data preparation
 workflow, cluster scheduling files, presentation exports, internal tests, or
 cached intermediate results.
 
-Figure S1 and Tables S2 and S3 are produced by a separate classifier pipeline
-and are outside the scope of this repository.
+Figure S1 and Tables S2 and S3 concern the embedding and classifier methodology
+documented in the companion repository. They are outside the executable
+workflow of this repository. The present workflow uses the resulting classifier
+output files and semantic distance matrix included in `anonymized_data.zip`.
 
 ## Repository contents
 
