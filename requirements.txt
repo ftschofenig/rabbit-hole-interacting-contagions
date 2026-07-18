@@ -6,6 +6,7 @@ lifelines==0.30.0
 scikit-learn==1.7.1
 matplotlib==3.10.0
 seaborn==0.13.2
+adjustText==1.3.0
 joblib==1.5.1
 tqdm==4.67.1
 PyYAML==6.0.3
