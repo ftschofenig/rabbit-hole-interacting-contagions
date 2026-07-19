@@ -43,8 +43,8 @@ output files and semantic distance matrix included in `anonymized_data.zip`.
 
 5. `figures_final` contains the reference manuscript figures.
 
-6. `requirements.txt` records the exact Python package versions used for the
-   accepted reference run.
+6. `requirements.txt` records the pinned direct Python package versions used
+   for the accepted reference run.
 
 ## Data extraction
 
@@ -53,6 +53,9 @@ Extract the archive from the repository root before running any notebook:
 ```bash
 unzip anonymized_data.zip
 ```
+
+The SHA256 digest of the archive is
+`510cf3b0da3cd5627b92c60ceab6c51e8981d843d9e287f559fe38089558ed1c`.
 
 The resulting layout must be:
 
@@ -82,13 +85,19 @@ to reidentify individuals.
 ## Environment
 
 The accepted reference run used Python 3.11.3. Create an isolated environment
-and install the exact dependencies:
+and install the pinned direct dependencies:
 
 ```bash
 python3.11 -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
+```
+
+Use the same numerical thread settings as the accepted cluster run:
+
+```bash
+export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1
 ```
 
 ## Notebook execution order
@@ -124,6 +133,15 @@ therefore reflect the last formal model notebook run. The three separate result
 bundles in `intermediate_files` are all retained and are combined by the main
 text figure notebook.
 
+Run the threshold validation notebook for Table S1:
+
+```bash
+jupyter nbconvert --to notebook --execute --ExecutePreprocessor.timeout=-1 --output-dir=executed_notebooks notebooks/04_threshold_validation.ipynb
+```
+
+The Table S1 notebook displays the result table and prints its LaTeX form in
+the executed notebook. It intentionally does not write a separate table file.
+
 Next run the full simulation:
 
 ```bash
@@ -136,15 +154,6 @@ Generate the main text and appendix figures:
 jupyter nbconvert --to notebook --execute --ExecutePreprocessor.timeout=-1 --output-dir=executed_notebooks notebooks/03_main_text_figures.ipynb
 jupyter nbconvert --to notebook --execute --ExecutePreprocessor.timeout=-1 --output-dir=executed_notebooks notebooks/03_appendix_text_figures.ipynb
 ```
-
-Finally run the threshold validation notebook for Table S1:
-
-```bash
-jupyter nbconvert --to notebook --execute --ExecutePreprocessor.timeout=-1 --output-dir=executed_notebooks notebooks/04_threshold_validation.ipynb
-```
-
-The Table S1 notebook displays the result table and prints its LaTeX form in
-the executed notebook. It intentionally does not write a separate table file.
 
 ## Generated outputs
 
