@@ -27,8 +27,7 @@ included in this repository's data archive.
 
 6. `requirements.txt` lists the Python dependencies.
 
-7. `run_full_pipeline.sh` runs a complete validation of the public workflow on
-   a Slurm cluster.
+7. `run_full_pipeline.sh` runs the complete public workflow on a Slurm cluster.
 
 ## Setup
 
@@ -62,13 +61,15 @@ repository/
 On a Slurm cluster, submit the complete workflow from the repository root:
 
 ```bash
-./run_full_pipeline.sh
+sbatch run_full_pipeline.sh
 ```
 
-The script submits dependent jobs for the analysis, simulation, and figure
-stages. It creates the Python environment, installs the dependencies, validates
-and extracts the archive, stops after any failed notebook, and records executed
-notebooks and logs under `executed_notebooks` and `logs`.
+The script runs the complete pipeline as a single job. It creates a fresh Python
+environment, installs the dependencies, extracts the archive, and stops after
+any failed notebook. Slurm records all setup messages, notebook start and
+completion messages, Jupyter diagnostics, and errors in
+`public_replication_JOBID.txt`. Executed notebook copies are written to
+`executed_notebooks`.
 
 For manual execution, run the notebooks in this order. Each notebook must use
 its containing directory as the kernel working directory.
@@ -111,10 +112,10 @@ notebooks. The formal model result bundles can be created in any order.
 ## Computing requirements
 
 The full pipeline is computationally demanding and is intended for an HPC
-environment. The automated runner requests three dependent jobs with up to 48
-hours, 128 CPUs, and one terabyte of memory for each job. The analysis and
-simulation notebooks both use 128 worker processes. Reduce those settings
-before using a smaller allocation.
+environment. The automated runner requests one job with up to 48 hours, 128
+CPUs, and one terabyte of memory. The analysis and simulation notebooks both
+use 128 worker processes. Reduce those settings before using a smaller
+allocation.
 
 ## License
 

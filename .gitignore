@@ -11,6 +11,7 @@ anonymized_data/
 executed_notebooks/
 intermediate_files/
 logs/
+public_replication_*.txt
 figures_optional/
 figures/simulations/
 figures/formal_models/
